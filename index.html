@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nicolas Tran — Software Engineer</title>
+  <meta name="description" content="Nicolas Tran is an early-career software engineer in Anaheim, CA who builds and ships real products with TypeScript and Next.js. B.S. Computer Science, Cal Poly Pomona.">
+  <meta name="author" content="Nicolas Tran">
+  <meta name="theme-color" content="#FFFFFF">
+  <link rel="canonical" href="https://chablades.github.io/">
+
+  <!-- Open Graph / social -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Nicolas Tran">
+  <meta property="og:title" content="Nicolas Tran — Software Engineer">
+  <meta property="og:description" content="Early-career software engineer building and shipping real products with TypeScript and Next.js.">
+  <meta property="og:url" content="https://chablades.github.io/">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Nicolas Tran — Software Engineer">
+  <meta name="twitter:description" content="Early-career software engineer building and shipping real products with TypeScript and Next.js.">
+
+  <!-- Favicon: inline SVG "NT" monogram -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232749E8'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Helvetica,Arial,sans-serif' font-size='28' font-weight='700' letter-spacing='-1' fill='%23FFFFFF'%3ENT%3C/text%3E%3C/svg%3E">
+
+  <!-- Fonts (Google Fonts only), loaded without blocking first paint -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"></noscript>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nicolas Tran",
+    "jobTitle": "Software Engineer",
+    "url": "https://chablades.github.io/",
+    "email": "mailto:nicolasxtran@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Anaheim", "addressRegion": "CA" },
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "California State Polytechnic University, Pomona" },
+    "sameAs": ["https://github.com/chablades", "https://www.linkedin.com/in/nicolasxtran"]
+  }
+  </script>
+
+  <style>
+    /* ===== Design tokens ===== */
+    :root {
+      --bg: #FFFFFF;
+      --text: #121417;
+      --muted: #5B616B;      /* 6.3:1 on white */
+      --faint: #8A9099;      /* decorative only, never body text */
+      --line: #E5E7EB;
+      --accent: #2749E8;     /* cobalt, 6.5:1 on white */
+      --accent-tint: #F1F4FE;
+
+      --font-head: "Familjen Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+      --col: 720px;
+      --gutter: 16px;
+      --nav-h: 56px;
+    }
+    @media (min-width: 600px) { :root { --gutter: 24px; } }
+
+    /* ===== Base ===== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    h1, h2, h3 { font-family: var(--font-head); font-weight: 600; line-height: 1.2; margin: 0; letter-spacing: -0.01em; }
+    p, ul, ol, dl, dd { margin: 0; padding: 0; }
+    ul, ol { list-style: none; }
+
+    a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+    ::selection { background: var(--accent); color: #FFFFFF; }
+
+    .wrap { max-width: calc(var(--col) + var(--gutter) * 2); margin: 0 auto; padding: 0 var(--gutter); }
+    .mono { font-family: var(--font-mono); }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    .skip-link {
+      position: absolute; left: var(--gutter); top: -100px; z-index: 100;
+      background: var(--text); color: #FFFFFF; padding: 0.5rem 0.875rem;
+      font-family: var(--font-mono); font-size: 0.875rem; text-decoration: none; border-radius: 4px;
+    }
+    .skip-link:focus { top: 0.75rem; }
+
+    /* ===== Sticky nav ===== */
+    .site-nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 255, 255, 0.92);
+      -webkit-backdrop-filter: saturate(180%) blur(8px);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s ease;
+    }
+    .site-nav.is-scrolled { border-bottom-color: var(--line); }
+    .site-nav nav { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); gap: 1rem; }
+    .brand {
+      font-family: var(--font-head); font-weight: 600; font-size: 1.125rem;
+      color: var(--text); text-decoration: none; letter-spacing: -0.02em;
+    }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a {
+      font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted);
+      text-decoration: none; padding: 0.375rem 0; position: relative;
+      transition: color 0.15s ease;
+    }
+    .nav-links a::after {
+      content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px;
+      background: var(--accent); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.2s ease;
+    }
+    .nav-links a:hover, .nav-links a[aria-current="true"] { color: var(--text); }
+    .nav-links a:hover::after, .nav-links a[aria-current="true"]::after { transform: scaleX(1); }
+    @media (max-width: 420px) {
+      .nav-links { gap: 0.875rem; }
+      .nav-links a { font-size: 0.75rem; }
+    }
+
+    /* ===== Hero ===== */
+    .hero { padding: 4.5rem 0 4rem; }
+    @media (min-width: 600px) { .hero { padding: 7rem 0 5.5rem; } }
+    .hero h1 { font-size: clamp(2.5rem, 9vw, 3.75rem); letter-spacing: -0.03em; line-height: 1.05; }
+    .hero .role { font-family: var(--font-head); font-weight: 500; font-size: clamp(1.25rem, 4.5vw, 1.625rem); color: var(--muted); margin-top: 0.5rem; letter-spacing: -0.01em; }
+    .hero .meta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); margin-top: 1.75rem; line-height: 1.8; }
+    .hero .meta .sep { color: var(--faint); margin: 0 0.5em; }
+    .hero .intro { font-size: 1.1875rem; line-height: 1.6; margin-top: 1.25rem; max-width: 36em; }
+
+    .link-row { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin-top: 2rem; }
+    .link-row a {
+      font-family: var(--font-mono); font-size: 0.875rem; color: var(--text);
+      text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.3em;
+      padding: 0.25rem 0; border-bottom: 1px solid var(--line);
+      transition: color 0.15s ease, border-color 0.15s ease;
+    }
+    .link-row a .arrow { color: var(--accent); transition: transform 0.2s ease; display: inline-block; }
+    .link-row a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+    .link-row a:hover .arrow { transform: translate(2px, -2px); }
+
+    /* ===== Sections ===== */
+    section, .site-footer { scroll-margin-top: var(--nav-h); }
+    .section { padding: 4rem 0; border-top: 1px solid var(--line); }
+    @media (min-width: 600px) { .section { padding: 5rem 0; } }
+    .section-title { font-size: 1.5rem; display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 2.5rem; }
+    .section-title .idx { font-family: var(--font-mono); font-size: 0.8125rem; font-weight: 400; color: var(--accent); letter-spacing: 0; }
+
+    /* Tags (stacks & skills) */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.375rem; }
+    .tags li {
+      font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.4; color: var(--muted);
+      border: 1px solid var(--line); border-radius: 3px; padding: 0.2rem 0.5rem;
+    }
+
+    /* ===== Projects ===== */
+    .projects { display: grid; gap: 2.75rem; }
+    .project {
+      position: relative;
+      padding-left: 1rem;
+      border-left: 2px solid var(--line);
+      transition: border-color 0.2s ease;
+    }
+    @media (min-width: 800px) { .project { margin-left: calc(-1.25rem - 2px); padding-left: 1.25rem; } }
+    .project:hover, .project:focus-within { border-left-color: var(--accent); }
+    .project .eyebrow { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); margin-bottom: 0.375rem; letter-spacing: 0.02em; }
+    .project-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem; }
+    .project h3 { font-size: 1.3125rem; letter-spacing: -0.015em; }
+    .project h3 .subtitle { font-weight: 500; color: var(--muted); }
+    .project .when { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); white-space: nowrap; }
+    .points { margin-top: 0.75rem; display: grid; gap: 0.375rem; }
+    .points li { position: relative; padding-left: 1.125rem; color: var(--text); }
+    .points li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.5rem; height: 1px; background: var(--faint); }
+    .project .tags { margin-top: 1rem; }
+    .project-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 0.875rem; }
+    .project-links a { font-family: var(--font-mono); font-size: 0.8125rem; }
+
+    /* ===== Experience ===== */
+    .timeline { display: grid; gap: 2rem; }
+    .job { display: grid; gap: 0.25rem; }
+    @media (min-width: 640px) { .job { grid-template-columns: 10.5rem 1fr; gap: 1.5rem; } }
+    .job .when { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); padding-top: 0.2rem; }
+    .job h3 { font-size: 1.125rem; letter-spacing: -0.01em; }
+    .job .org { color: var(--muted); font-size: 0.9375rem; margin-top: 0.125rem; }
+    .job .desc { margin-top: 0.5rem; }
+
+    /* ===== Skills ===== */
+    .skills { display: grid; gap: 1.75rem; }
+    .skill-group { display: grid; gap: 0.625rem; }
+    @media (min-width: 640px) { .skill-group { grid-template-columns: 10.5rem 1fr; gap: 1.5rem; } }
+    .skill-group dt { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); padding-top: 0.2rem; }
+
+    /* ===== Footer / contact ===== */
+    .site-footer { border-top: 1px solid var(--line); padding: 4rem 0 2.5rem; }
+    @media (min-width: 600px) { .site-footer { padding: 5rem 0 3rem; } }
+    .site-footer .lead { font-family: var(--font-head); font-size: clamp(1.375rem, 4.5vw, 1.75rem); font-weight: 500; line-height: 1.3; letter-spacing: -0.015em; max-width: 26em; }
+    .site-footer .lead a { overflow-wrap: anywhere; }
+    .site-footer .link-row { margin-top: 1.75rem; }
+    .colophon {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem;
+      margin-top: 4rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted);
+    }
+    .colophon a { color: var(--muted); text-decoration: none; }
+    .colophon a:hover { color: var(--accent); }
+
+    /* ===== Subtle reveal (only when JS runs and motion is OK) ===== */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .reveal { opacity: 0; transform: translateY(10px); transition: opacity 0.6s ease, transform 0.6s ease; }
+      .js .reveal.is-visible { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    }
+
+    @media print {
+      .site-nav, .skip-link { display: none; }
+      .project { break-inside: avoid; }
+      a { color: var(--text); }
+    }
+  </style>
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-nav">
+    <nav class="wrap" aria-label="Primary">
+      <a class="brand" href="#top" aria-label="Nicolas Tran, back to top">NT<span aria-hidden="true">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===== Intro ===== -->
+    <section class="hero" id="top" aria-labelledby="name">
+      <div class="wrap">
+        <h1 id="name">Nicolas Tran</h1>
+        <p class="role">Software Engineer</p>
+        <p class="meta">
+          Anaheim, CA<span class="sep" aria-hidden="true">/</span><span class="sr-only">. </span>B.S. Computer Science, Cal Poly Pomona (Aug 2026)
+        </p>
+        <p class="intro">
+          I&rsquo;m an early-career software engineer who builds and ships real products with TypeScript and Next.js.
+          Before software, I worked in IT support and hands-on production roles, so I care about things that work reliably for the people using them.
+        </p>
+        <ul class="link-row" aria-label="Profiles and contact">
+          <li><a href="https://github.com/chablades">GitHub<span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="https://www.linkedin.com/in/nicolasxtran">LinkedIn<span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="mailto:nicolasxtran@gmail.com">Email<span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+          <li><a href="resume.pdf">Resume<span class="sr-only"> (PDF)</span><span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== Projects (rendered from the PROJECTS array at the bottom of this file) ===== -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <h2 class="section-title" id="projects-title"><span class="idx" aria-hidden="true">01</span>Projects</h2>
+        <div class="projects" id="project-list">
+          <noscript>
+            <p>Project list needs JavaScript. You can browse my work at <a href="https://github.com/chablades">github.com/chablades</a>.</p>
+          </noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Experience ===== -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="wrap">
+        <h2 class="section-title" id="experience-title"><span class="idx" aria-hidden="true">02</span>Experience</h2>
+        <ol class="timeline">
+          <li class="job reveal">
+            <p class="when">Aug 2026 – Present</p>
+            <div>
+              <h3>Assembly Operator</h3>
+              <p class="org">Elevate Aircraft Seating · Huntington Beach, CA</p>
+              <p class="desc">Assemble and inspect life vest modules and electromechanical components for commercial aircraft seating under zero-defect aerospace quality standards.</p>
+            </div>
+          </li>
+          <li class="job reveal">
+            <p class="when">May – Jul 2026</p>
+            <div>
+              <h3>Production Staff</h3>
+              <p class="org">ARC Document Solutions · Anaheim, CA</p>
+              <p class="desc">Digitized books at scale for an AI training data project on overnight production shifts.</p>
+            </div>
+          </li>
+          <li class="job reveal">
+            <p class="when">Aug 2023 – Aug 2024</p>
+            <div>
+              <h3>Package Handler</h3>
+              <p class="org">FedEx Express · Anaheim, CA</p>
+              <p class="desc">Processed 500+ packages per shift in a high-volume distribution center.</p>
+            </div>
+          </li>
+          <li class="job reveal">
+            <p class="when">Jan 2021 – Jan 2022</p>
+            <div>
+              <h3>Computer Lab Aide</h3>
+              <p class="org">Fullerton College · Fullerton, CA</p>
+              <p class="desc">Front-line IT support; managed the student laptop rental program and reimaged returned devices.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== Skills ===== -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="wrap">
+        <h2 class="section-title" id="skills-title"><span class="idx" aria-hidden="true">03</span>Skills</h2>
+        <dl class="skills">
+          <div class="skill-group reveal">
+            <dt>Languages</dt>
+            <dd><ul class="tags">
+              <li>TypeScript</li><li>JavaScript</li><li>Java</li><li>Python</li><li>C++</li><li>C</li><li>C#</li><li>HTML</li><li>CSS</li><li>Bash</li>
+            </ul></dd>
+          </div>
+          <div class="skill-group reveal">
+            <dt>Frameworks &amp; Tools</dt>
+            <dd><ul class="tags">
+              <li>Next.js</li><li>React</li><li>Node.js</li><li>Git</li><li>GitHub</li><li>Vercel</li><li>VS Code</li><li>Linux</li>
+            </ul></dd>
+          </div>
+          <div class="skill-group reveal">
+            <dt>IT</dt>
+            <dd><ul class="tags">
+              <li>Hardware/software troubleshooting</li><li>OS reimaging</li><li>Device management</li><li>Technical documentation</li>
+            </ul></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Contact / footer ===== -->
+  <footer class="site-footer" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <h2 class="section-title" id="contact-title"><span class="idx" aria-hidden="true">04</span>Contact</h2>
+      <p class="lead">Open to software engineering and IT roles — reach out at <a href="mailto:nicolasxtran@gmail.com">nicolasxtran@gmail.com</a></p>
+      <ul class="link-row" aria-label="Profiles and contact">
+        <li><a href="https://github.com/chablades">GitHub<span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="https://www.linkedin.com/in/nicolasxtran">LinkedIn<span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="mailto:nicolasxtran@gmail.com">Email<span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+        <li><a href="resume.pdf">Resume<span class="sr-only"> (PDF)</span><span class="arrow" aria-hidden="true">&#8599;</span></a></li>
+      </ul>
+      <div class="colophon">
+        <p>&copy; 2026 Nicolas Tran</p>
+        <p><a href="#top">Back to top &uarr;</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =====================================================================
+       PROJECTS — edit this array to add, remove, or reorder projects.
+       Order here = order on the page (featured first).
+
+       Fields:
+         title     (required)  Project name
+         subtitle  (optional)  Shown after the title in gray
+         when      (optional)  Dates, status, or course code (shown in mono)
+         featured  (optional)  true adds a small "Featured" label
+         stack     (optional)  Array of tech tags
+         points    (required)  Array of 1–3 short description lines
+         links     (optional)  Array of { label, url }. Any link with an
+                               empty url is hidden, so placeholders are safe.
+       ===================================================================== */
+    const PROJECTS = [
+      {
+        title: "MapleDoro",
+        when: "Jan 2026 – Present",
+        featured: true,
+        stack: ["TypeScript", "Next.js", "React 19", "Vercel"],
+        points: [
+          "Built and launched a MapleStory companion web app with a partner, in production on Vercel with a custom domain.",
+          "Data-driven ClassConfig TypeScript architecture renders 32+ class guide pages from a single schema, with special-case handling for non-standard class mechanics.",
+          "Two-step data sourcing pipeline with confidence tagging to validate and import large batches of structured game data."
+        ],
+        links: [
+          { label: "Live site", url: "https://mapledoro.com" },
+          { label: "GitHub", url: "" } // TODO: repo URL
+        ]
+      },
+      {
+        title: "Multi-Agent AI Orchestrator",
+        when: "In progress",
+        stack: [], // TODO: add stack, e.g. ["TypeScript", "Node.js"]
+        points: [
+          "Unifies Claude, Gemini, Codex, and Cursor into one workflow with role assignments: planning, research, and coding agents.",
+          "Core engine dispatches real tasks across agents and verifies work before marking it complete."
+        ],
+        links: [
+          { label: "GitHub", url: "" } // TODO: repo URL
+        ]
+      },
+      {
+        title: "ShiftSync",
+        subtitle: "Employee Scheduling App",
+        when: "Sep – Dec 2025",
+        stack: ["TypeScript", "Next.js", "Vercel"],
+        points: [
+          "Led a team of 5 building a shift scheduling web app; produced the work breakdown structure, sprint plan, and risk matrix.",
+          "Authored 15+ use case documents and UML diagrams; delivered all milestones on schedule across 3 sprints."
+        ],
+        links: [
+          { label: "GitHub", url: "" } // TODO: repo URL
+        ]
+      },
+      {
+        title: "Operating Systems Project",
+        when: "CS 4310",
+        stack: ["Java", "Swing"],
+        points: [
+          "Implemented Banker's Algorithm, page replacement, CPU scheduling, and deadlock handling with a Java Swing GUI demo.",
+          "Co-authored an IEEE-formatted research paper on deadlock avoidance."
+        ],
+        links: [
+          { label: "GitHub", url: "" }, // TODO: repo URL
+          { label: "Paper (PDF)", url: "" } // TODO: PDF URL, e.g. "deadlock-paper.pdf" in this repo
+        ]
+      },
+      {
+        title: "RTSP Streaming Client/Server",
+        when: "CS 3800",
+        stack: ["Python"],
+        points: [
+          "Python client/server implementation tested across multiple network configurations."
+        ],
+        links: [
+          { label: "GitHub", url: "" } // TODO: repo URL
+        ]
+      },
+      {
+        title: "Raspberry Pi Android Auto Head Unit",
+        when: "Personal project",
+        stack: ["Raspberry Pi"], // TODO: add the rest of the stack
+        points: [
+          "Personal hardware project: a DIY Android Auto head unit built on a Raspberry Pi."
+        ],
+        links: [
+          { label: "Details", url: "" } // TODO: repo or write-up URL
+        ]
+      }
+    ];
+    /* ===================== end of editable PROJECTS ===================== */
+
+    (function () {
+      var esc = function (s) {
+        return String(s).replace(/[&<>"']/g, function (c) {
+          return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+        });
+      };
+
+      // Render projects
+      var list = document.getElementById("project-list");
+      list.innerHTML = PROJECTS.map(function (p) {
+        var links = (p.links || []).filter(function (l) { return l.url; });
+        var stack = p.stack || [];
+        return '<article class="project reveal">' +
+          (p.featured ? '<p class="eyebrow">Featured</p>' : '') +
+          '<div class="project-head">' +
+            '<h3>' + esc(p.title) + (p.subtitle ? ' <span class="subtitle">— ' + esc(p.subtitle) + '</span>' : '') + '</h3>' +
+            (p.when ? '<p class="when">' + esc(p.when) + '</p>' : '') +
+          '</div>' +
+          '<ul class="points">' + p.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
+          (stack.length ? '<ul class="tags" aria-label="Tech stack">' + stack.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '') +
+          (links.length ? '<ul class="project-links">' + links.map(function (l) {
+            return '<li><a href="' + esc(l.url) + '">' + esc(l.label) +
+              '<span class="sr-only"> for ' + esc(p.title) + '</span><span aria-hidden="true"> &#8599;</span></a></li>';
+          }).join('') + '</ul>' : '') +
+        '</article>';
+      }).join('');
+
+      // Nav: border on scroll + highlight the current section
+      var nav = document.querySelector(".site-nav");
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+      var targets = navLinks.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+      var ticking = false;
+      function onScroll() {
+        ticking = false;
+        var y = window.scrollY;
+        nav.classList.toggle("is-scrolled", y > 8);
+        var probe = y + window.innerHeight * 0.35;
+        var atBottom = window.innerHeight + y >= document.documentElement.scrollHeight - 4;
+        var current = -1;
+        targets.forEach(function (t, i) { if (t && t.offsetTop <= probe) current = i; });
+        if (atBottom) current = targets.length - 1;
+        navLinks.forEach(function (a, i) {
+          if (i === current) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
+        });
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+      }, { passive: true });
+      onScroll();
+
+      // Subtle reveal on scroll
+      var items = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+          });
+        }, { rootMargin: "0px 0px -8% 0px" });
+        items.forEach(function (el) { io.observe(el); });
+      } else {
+        items.forEach(function (el) { el.classList.add("is-visible"); });
+      }
+    })();
+  </script>
+</body>
+</html>
