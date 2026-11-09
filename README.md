@@ -58,5 +58,5 @@ updates within a minute or two.
 - [ ] Add `resume.pdf` to the repo root. The Resume links already point to it
       and return 404 until it exists.
 - [ ] Fill in the empty project links (the `// TODO` entries in `PROJECTS`).
-- [ ] Add the tech stack for Multi-Agent AI Orchestrator and the Raspberry Pi project.
+- [ ] Add the tech stack for Multi-Agent AI Orchestrator.
 - [ ] Add an Open Graph preview image so shared links show a card image.
