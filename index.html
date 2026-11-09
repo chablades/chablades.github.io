@@ -418,7 +418,8 @@
   <script>
     /* =====================================================================
        PROJECTS — edit this array to add, remove, or reorder projects.
-       Order here = order on the page (featured first).
+       Order here = order on the page: featured first, then newest to oldest
+       by start date.
 
        Fields:
          title     (required)  Project name
@@ -446,7 +447,21 @@
         ],
         links: [
           { label: "Live site", url: "https://mapledoro.com" },
-          { label: "GitHub", url: "" } // TODO: repo URL
+          { label: "GitHub", url: "https://github.com/chablades/mapledoro" }
+        ]
+      },
+      {
+        title: "Chaebot",
+        subtitle: "Twitch Chat Bot",
+        when: "Oct 2026 – Present",
+        stack: ["Go", "Wails", "Twitch IRC", "JavaScript"],
+        points: [
+          "Personal Twitch chat bot in Go: mods add, edit, and delete custom commands live from chat, with permission checks and input validation against Twitch's limits.",
+          "Wails desktop app to start and stop the bot, watch chat live, send messages, and manage commands, packaged as a single self-contained .exe.",
+          "IRC client hardened against dead connections and expired tokens; cooldowns, timed messages, and a YouTube live chat listener are in progress."
+        ],
+        links: [
+          { label: "GitHub", url: "https://github.com/chablades/chaebot" }
         ]
       },
       {
@@ -462,20 +477,6 @@
         links: [
           { label: "GitHub", url: "https://github.com/chablades/palworld-craft" },
           { label: "Live site", url: "" } // TODO: Vercel URL
-        ]
-      },
-      {
-        title: "Chaebot",
-        subtitle: "Twitch Chat Bot",
-        when: "Oct 2026 – Present",
-        stack: ["Go", "Wails", "Twitch IRC", "JavaScript"],
-        points: [
-          "Personal Twitch chat bot in Go: mods add, edit, and delete custom commands live from chat, with permission checks and input validation against Twitch's limits.",
-          "Wails desktop app to start and stop the bot, watch chat live, send messages, and manage commands, packaged as a single self-contained .exe.",
-          "IRC client hardened against dead connections and expired tokens; cooldowns, timed messages, and a YouTube live chat listener are in progress."
-        ],
-        links: [
-          { label: "GitHub", url: "https://github.com/chablades/chaebot" }
         ]
       },
       {
@@ -500,7 +501,7 @@
           "Authored 15+ use case documents and UML diagrams; delivered all milestones on schedule across 3 sprints."
         ],
         links: [
-          { label: "GitHub", url: "" } // TODO: repo URL
+          { label: "GitHub", url: "https://github.com/chablades/shiftsync" } 
         ]
       }
     ];

@@ -22,7 +22,8 @@ the `<style>` block.
 ## Editing projects
 
 Projects are rendered from the `PROJECTS` array. Their order in the array is
-the order on the page.
+the order on the page: featured projects first, then newest to oldest by
+start date.
 
 ```js
 {
@@ -63,11 +64,51 @@ python3 -m http.server 8000
 Push to the branch GitHub Pages publishes from (normally `main`). The site
 updates within a minute or two.
 
-## To do
+## Checklist: things only Nicolas can add
 
-- [ ] Add `resume.pdf` to the repo root. The Resume links already point to it
-      and return 404 until it exists.
-- [ ] Fill in the empty project links (the `// TODO` entries in `PROJECTS`).
-- [ ] Add the tech stack for Multi-Agent AI Orchestrator.
-- [ ] Add `photo.jpg` (square profile photo) to the repo root.
-- [ ] Add a MapleDoro screenshot and set its `image.src`.
+Search `index.html` for `TODO` to find each spot in the code.
+
+**Files to add to the repo root**
+
+- [ ] `photo.jpg`: square profile photo, at least 400×400. Also used as the
+      preview image when the site is shared.
+- [ ] `resume.pdf`: both Resume links point here and return 404 until it exists.
+
+**MapleDoro**
+
+- [ ] Screenshot: save as `images/mapledoro.png` (1280×720) and set
+      `image.src` to `"images/mapledoro.png"`.
+
+**Chaebot**
+
+- [ ] Merge the `desktop-app` and `ccr-3db4040f-1v8qlj` branches into `main`
+      in the chaebot repo, so GitHub shows the desktop app and the features the
+      page describes.
+- [ ] Once cooldowns, timed messages and the YouTube listener are merged, move
+      them out of the "in progress" bullet.
+- [ ] Optional: a screenshot of the desktop app.
+
+**Palcraft**
+
+- [ ] Live site URL: fill in the empty `Live site` link.
+- [ ] Confirm the start date (Jul 2026, taken from the first commit).
+- [ ] Optional: a screenshot of the calculator or crafting tree.
+
+**Multi-Agent AI Orchestrator**
+
+- [ ] Start date: replace `"In progress"` with e.g. `"Sep 2026 – Present"`,
+      then move the project to its place in the date order.
+- [ ] Tech stack: fill in `stack`.
+- [ ] GitHub URL: there's no repo for it yet. Either add one or leave the
+      link empty (it stays hidden).
+
+**ShiftSync**
+
+- [ ] Confirm the GitHub link. It points to `chablades/shiftsync`; switch it if
+      the team repo `TAndronaco/CS4800-Worker-Schedule-Project` is the one to show.
+
+**Going live**
+
+- [ ] Merge this branch into `main`. GitHub Pages only publishes `main`.
+- [ ] Optional: the Contact line still says "Open to software engineering and
+      IT roles". Update it if it should match the longer list in the intro.
