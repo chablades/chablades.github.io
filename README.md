@@ -31,13 +31,23 @@ the order on the page.
   when: "Jan 2026 – Present",       // optional: dates, status or course code
   featured: true,                   // optional, adds a "Featured" label
   stack: ["TypeScript", "Next.js"], // optional tech tags
+  image: { src: "images/app.png", alt: "Describe the screenshot" }, // optional, shown at 16:9
   points: ["What it does", "..."],  // required, 1–3 short lines
   links: [{ label: "GitHub", url: "https://github.com/..." }] // optional
 }
 ```
 
-A link with an empty `url` is hidden, so placeholder links are safe to leave
-in until the real URL is ready.
+A link with an empty `url`, or an image with an empty `src` or a missing file,
+is hidden, so placeholders are safe to leave in
+until the real file or URL is ready. Put screenshots in an `images/` folder;
+1280×720 PNG or JPG works well.
+
+## Images
+
+| File          | Used for                                                    |
+| ------------- | ----------------------------------------------------------- |
+| `photo.jpg`   | Profile photo in the intro, and the preview image when the site is shared on LinkedIn, Slack, etc. Square, at least 400×400. Until it exists, an "NT" monogram shows instead. |
+| `images/*.png`| Optional project screenshots (see `image` above).           |
 
 ## Previewing locally
 
@@ -59,4 +69,5 @@ updates within a minute or two.
       and return 404 until it exists.
 - [ ] Fill in the empty project links (the `// TODO` entries in `PROJECTS`).
 - [ ] Add the tech stack for Multi-Agent AI Orchestrator.
-- [ ] Add an Open Graph preview image so shared links show a card image.
+- [ ] Add `photo.jpg` (square profile photo) to the repo root.
+- [ ] Add a MapleDoro screenshot and set its `image.src`.

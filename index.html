@@ -16,7 +16,10 @@
   <meta property="og:description" content="Early-career software engineer building and shipping real products with TypeScript and Next.js.">
   <meta property="og:url" content="https://chablades.github.io/">
   <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://chablades.github.io/photo.jpg">
+  <meta property="og:image:alt" content="Portrait of Nicolas Tran">
   <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="https://chablades.github.io/photo.jpg">
   <meta name="twitter:title" content="Nicolas Tran — Software Engineer">
   <meta name="twitter:description" content="Early-career software engineer building and shipping real products with TypeScript and Next.js.">
 
@@ -36,6 +39,7 @@
     "name": "Nicolas Tran",
     "jobTitle": "Software Engineer",
     "url": "https://chablades.github.io/",
+    "image": "https://chablades.github.io/photo.jpg",
     "email": "mailto:nicolasxtran@gmail.com",
     "address": { "@type": "PostalAddress", "addressLocality": "Anaheim", "addressRegion": "CA" },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "California State Polytechnic University, Pomona" },
@@ -138,6 +142,20 @@
     /* ===== Hero ===== */
     .hero { padding: 4.5rem 0 4rem; }
     @media (min-width: 600px) { .hero { padding: 7rem 0 5.5rem; } }
+    .hero-top { display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 1.5rem; }
+    @media (min-width: 600px) { .hero-top { flex-direction: row; justify-content: space-between; align-items: center; gap: 2rem; } }
+    .avatar {
+      position: relative; flex: none; width: 96px; height: 96px; border-radius: 50%; overflow: hidden;
+      background: var(--accent-tint); box-shadow: 0 0 0 1px var(--line);
+    }
+    @media (min-width: 600px) { .avatar { width: 152px; height: 152px; } }
+    .avatar img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: cover; }
+    /* Monogram shown until photo.jpg exists (the img removes itself if it fails to load) */
+    .avatar-fallback {
+      position: absolute; inset: 0; display: grid; place-items: center;
+      font-family: var(--font-head); font-weight: 600; font-size: 2rem; letter-spacing: -0.03em; color: var(--accent);
+    }
+    @media (min-width: 600px) { .avatar-fallback { font-size: 3rem; } }
     .hero h1 { font-size: clamp(2.5rem, 9vw, 3.75rem); letter-spacing: -0.03em; line-height: 1.05; }
     .hero .role { font-family: var(--font-head); font-weight: 500; font-size: clamp(1.25rem, 4.5vw, 1.625rem); color: var(--muted); margin-top: 0.5rem; letter-spacing: -0.01em; }
     .hero .meta { font-family: var(--font-mono); font-size: 0.8125rem; color: var(--muted); margin-top: 1.75rem; line-height: 1.8; }
@@ -189,6 +207,10 @@
     .points li { position: relative; padding-left: 1.125rem; color: var(--text); }
     .points li::before { content: ""; position: absolute; left: 0; top: 0.8em; width: 0.5rem; height: 1px; background: var(--faint); }
     .project .tags { margin-top: 1rem; }
+    .project-img {
+      display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top;
+      margin-top: 1rem; border-radius: 6px; background: var(--accent-tint); box-shadow: 0 0 0 1px var(--line);
+    }
     .project-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin-top: 0.875rem; }
     .project-links a { font-family: var(--font-mono); font-size: 0.8125rem; }
 
@@ -264,8 +286,17 @@
     <!-- ===== Intro ===== -->
     <section class="hero" id="top" aria-labelledby="name">
       <div class="wrap">
-        <h1 id="name">Nicolas Tran</h1>
-        <p class="role">Software Engineer</p>
+        <div class="hero-top">
+          <div>
+            <h1 id="name">Nicolas Tran</h1>
+            <p class="role">Software Engineer</p>
+          </div>
+          <!-- Profile photo: add a square photo.jpg (at least 400×400) to the repo root -->
+          <div class="avatar">
+            <span class="avatar-fallback" aria-hidden="true">NT</span>
+            <img src="photo.jpg" alt="Nicolas Tran" width="304" height="304" decoding="async" onerror="this.remove()">
+          </div>
+        </div>
         <p class="meta">
           Anaheim, CA<span class="sep" aria-hidden="true">/</span><span class="sr-only">. </span>B.S. Computer Science, Cal Poly Pomona (Aug 2026)
         </p>
@@ -392,6 +423,8 @@
          when      (optional)  Dates, status, or course code (shown in mono)
          featured  (optional)  true adds a small "Featured" label
          stack     (optional)  Array of tech tags
+         image     (optional)  { src, alt } screenshot, shown at 16:9. Hidden
+                               if src is empty or the file is missing.
          points    (required)  Array of 1–3 short description lines
          links     (optional)  Array of { label, url }. Any link with an
                                empty url is hidden, so placeholders are safe.
@@ -402,6 +435,7 @@
         when: "Jan 2026 – Present",
         featured: true,
         stack: ["TypeScript", "Next.js", "React 19", "Vercel"],
+        image: { src: "", alt: "MapleDoro class guide page" }, // TODO: e.g. "images/mapledoro.png"
         points: [
           "Built and launched a MapleStory companion web app with two partners, in production on Vercel with a custom domain.",
           "Data-driven ClassConfig TypeScript architecture renders 52+ class guide pages.",
@@ -458,6 +492,8 @@
             '<h3>' + esc(p.title) + (p.subtitle ? ' <span class="subtitle">— ' + esc(p.subtitle) + '</span>' : '') + '</h3>' +
             (p.when ? '<p class="when">' + esc(p.when) + '</p>' : '') +
           '</div>' +
+          (p.image && p.image.src ? '<img class="project-img" src="' + esc(p.image.src) + '" alt="' + esc(p.image.alt || p.title + ' screenshot') +
+            '" width="1280" height="720" loading="lazy" decoding="async" onerror="this.remove()">' : '') +
           '<ul class="points">' + p.points.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' +
           (stack.length ? '<ul class="tags" aria-label="Tech stack">' + stack.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>' : '') +
           (links.length ? '<ul class="project-links">' + links.map(function (l) {
